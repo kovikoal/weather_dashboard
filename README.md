@@ -1,52 +1,29 @@
 weather_dashboard
 ==============
 
-Template for a simple Vaadin application that only requires a Servlet 3.0 container to run.
-
+Application, which displays weather for the list of cities (any can be added) and actual currencies.
+Also shows user's IP-address, last request time and total connections number (which stored local mongoDB).
 
 Workflow
 ========
 
-To compile the entire project, run "mvn install".
+To compile the entire project, run "mvn package".
+This will create .WAR file, which can be deployed to the application server (tested for Tomcat 8.5),
+and then accessed (the way depends on your server config).
 
-To run the application, run "mvn jetty:run" and open http://localhost:8080/ .
+Application log is created in home/dashboard/ directory by default, which can be changed in log4j.properties file.
 
-To produce a deployable production mode WAR:
-- change productionMode to true in the servlet class configuration (nested in the UI class)
-- run "mvn clean package"
-- test the war file with "mvn jetty:run-war"
 
-Client-Side compilation
+Used API
 -------------------------
 
-The generated maven project is using an automatically generated widgetset by default. 
-When you add a dependency that needs client-side compilation, the maven plugin will 
-automatically generate it for you. Your own client-side customizations can be added into
-package "client".
+- For weather information used http://openweathermap.org free subscription type.
+- For currency information used http://www.apilayer.net, also free subscription type.
 
-Debugging client side code
-  - run "mvn vaadin:run-codeserver" on a separate console while the application is running
-  - activate Super Dev Mode in the debug window of the application
+You can upgrade this app by using premium types of API, cause they're giving more information;
 
-Developing a theme using the runtime compiler
--------------------------
+Author
+-------------------
 
-When developing the theme, Vaadin can be configured to compile the SASS based
-theme at runtime in the server. This way you can just modify the scss files in
-your IDE and reload the browser to see changes.
-
-To use the runtime compilation, open pom.xml and comment out the compile-theme 
-goal from vaadin-maven-plugin configuration. To remove a possibly existing 
-pre-compiled theme, run "mvn clean package" once.
-
-When using the runtime compiler, running the application in the "run" mode 
-(rather than in "debug" mode) can speed up consecutive theme compilations
-significantly.
-
-It is highly recommended to disable runtime compilation for production WAR files.
-
-Using Vaadin pre-releases
--------------------------
-
-If Vaadin pre-releases are not enabled by default, use the Maven parameter
-"-P vaadin-prerelease" or change the activation default value of the profile in pom.xml .
+This application is made by Victor Kopyl and is free for use.
+For any question, feel free to contact me by e-mail - madscientistfromhell@gmail.com
