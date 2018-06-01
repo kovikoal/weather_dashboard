@@ -5,7 +5,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.vaadin.annotations.Push;
-import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.*;
 import com.vaadin.shared.ui.ContentMode;
@@ -16,7 +15,6 @@ import org.apache.log4j.Logger;
 
 
 @Push
-@Theme("mytheme")
 public class MyUI extends UI {
 
     private static final String OPEN_WEATHER_MAP_API = "http://api.openweathermap.org/data/2.5/weather?q=%s&appid=24d664857584da3f3ddedb2a5b775dc6";
@@ -139,7 +137,7 @@ public class MyUI extends UI {
 
     private void setCoin(String id) {
         String basepath = VaadinService.getCurrent().getBaseDirectory().getAbsolutePath();
-        coin.setSource(new FileResource(new File(basepath + "/WEB-INF/images/" + id + ".png")));
+        coin.setSource(new FileResource(new File(basepath + "/WEB-INF/classes/images/" + id + ".png")));
         coin.setWidth("150px");
         coin.setHeight("150px");
     }
@@ -221,13 +219,13 @@ public class MyUI extends UI {
             case ("50n") :  backgroundPath = "Night.jpg";
                 break;
         }
-        FileResource b = new FileResource(new File(basepath + "/WEB-INF/images/" + backgroundPath));
+        FileResource b = new FileResource(new File(basepath + "/WEB-INF/classes/images/" + backgroundPath));
         background.setSource(b);
     }
 
     private void setIcon(String id) {
         String basepath = VaadinService.getCurrent().getBaseDirectory().getAbsolutePath();
-        icon.setSource(new FileResource(new File(basepath + "/WEB-INF/images/" + id + ".png")));
+        icon.setSource(new FileResource(new File(basepath + "/WEB-INF/classes/images/" + id + ".png")));
         icon.setWidth("200px");
         icon.setHeight("200px");
     }
