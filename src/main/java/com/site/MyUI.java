@@ -14,6 +14,8 @@ import java.text.DecimalFormat;
 import org.apache.log4j.Logger;
 
 
+
+
 @Push
 public class MyUI extends UI {
 
@@ -32,6 +34,7 @@ public class MyUI extends UI {
     private Label ip_addr = new Label();
     private Label time = new Label();
     private Label CurrencyDate = new Label();
+    private Label counter = new Label();
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
@@ -57,6 +60,10 @@ public class MyUI extends UI {
         select.setWidth("200px");
         Button buttonW = new Button("Обновить погоду");
         Button buttonC = new Button("Обновить курсы валют");
+
+        if(database.mongoData() != null) {
+            counter.setValue("Количество посещений: " + database.mongoData());
+        }else counter.setValue("Ошибка подключения к базе данных");
 
         currencyURL.setValue(CURRENCYLAYER_API);
         currencyURL.setWidth("300px");
@@ -93,7 +100,7 @@ public class MyUI extends UI {
 
         Weatherlayout.addComponents(icon, resultW, select, buttonW, weatherURL);
         CurrencyLayout.addComponents(coin, resultC, CurrencyDate ,buttonC, currencyURL);
-        DataLayout.addComponents(ip_addr, time);
+        DataLayout.addComponents(ip_addr, time, counter);
         hor.addComponents(Weatherlayout, DataLayout, CurrencyLayout);
         center.addComponent(hor);
         backgroundImage.addComponents(background, center);
